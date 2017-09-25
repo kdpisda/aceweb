@@ -11,12 +11,13 @@ from django.core.mail import EmailMessage,get_connection
 from custom_key.models import *
 from django.core.mail.backends.smtp import EmailBackend
 
-#Group_id distributions
+# Group_id distributions
 # 1 - student
 # 2 - faculty
 # 3 - alumni
 # 4 - admin
 # 5 - developer
+
 
 def get_notice(request):
 	response={}
@@ -27,15 +28,16 @@ def get_notice(request):
 			tmp_json['title']=o.title
 			tmp_json['url']='/notice_read?id='+str(o.id)
 			json_list.append(tmp_json)
-
 	response['list']=json_list
 	print response
 	return JsonResponse(response)
+
 
 def get_profile(request):
 	response={}
 	if request.user.is_authenticated():
 		login_id=str(request.user)
+		print str(request.user)
 		login_data_row=login_data.objects.get(login_id=login_id)
 		link1='<div class="dropdown"><button class="dropbtn"><div style="font-size:0.95em;color:#9d9d9d;font-family:arial;">PROFILE</div></button><div class="dropdown-content">'
 		if login_data_row.group_id==1:
@@ -87,6 +89,8 @@ def notice_read(request):
 	else:
 		tmp_json['link2']='<a href="/login/">LOGIN</a>'
 		return render(request,'notice.html',tmp_json)
+
+
 def home(request):
 	if request.user.is_authenticated():
 		return render(request,'index.html' ,{'link2':'<a href="/logout/">LOGOUT</a>'})
@@ -96,11 +100,13 @@ def home(request):
 # def academics(request):
 # 	return render(request,'academics.html')
 
+
 def activities(request):
 	if request.user.is_authenticated():
 		return render(request,'activities.html' ,{'link2':'<a href="/logout/">LOGOUT</a>'})
 	else:
 		return render(request,'activities.html',{'link2':'<a href="/login/">LOGIN</a>'})
+
 
 def administration(request):
 	if request.user.is_authenticated():
@@ -108,9 +114,11 @@ def administration(request):
 	else:
 		return render(request,'faculty.html',{'link2':'<a href="/login/">LOGIN</a>'})
 
+
 def logout_view(request):
 	logout(request)
 	return HttpResponseRedirect('/')
+
 
 @csrf_exempt
 def contact_view(request):

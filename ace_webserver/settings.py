@@ -141,5 +141,5 @@ MEDIA_ROOT = "media/"
 
 FILE_UPLOAD_HANDLERS = ("django_excel.ExcelMemoryFileUploadHandler",
                         "django_excel.TemporaryExcelFileUploadHandler")
-import django
-django.setup()
+# import django
+# django.setup()
