@@ -27,8 +27,11 @@ def get_notice(request):
 			tmp_json={}
 			tmp_json['title']=o.title
 			tmp_json['url']='/notice_read?id='+str(o.id)
+			tmp_json['image'] = '/media/'+str(o.file)
+			tmp_json['date'] = o.date_issued
 			json_list.append(tmp_json)
-	response['list']=json_list
+	response['success']=True
+	response['notice']=json_list
 	print response
 	return JsonResponse(response)
 
