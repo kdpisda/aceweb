@@ -90,16 +90,13 @@ def get_announcements(request):
 	active = announcement_data.objects.filter(active = True).count()
 	if(active > 0):
 		temp_announcements = announcement_data.objects.filter(active = True)
-		announcements = {}
-		temp_announcement = {}
+		announcements = []
 		temp_announcement = {}
 		for announcement in temp_announcements:
 			# temp_announcement['title'] = announcement.title
 			# temp_announcement['subtitle'] = announcement.subtitle
-			temp_announcement = {
-				'title' : announcement.title,
-				'subtitle' : announcement.subtitle
-			}
+			temp_announcement['title'] = str(announcement.title)
+			temp_announcement['subtitle'] = announcement.subtitle
 			announcements.append(temp_announcement)
 			temp_announcement = {}
 		data = {

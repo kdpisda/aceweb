@@ -23,7 +23,7 @@ $.ajax({
     if(data.success == true){
       for(x in data.notice)
       {
-         document.getElementById("notice_marquee").innerHTML+= '<div class=row><div class="col-sm-12" >'+'<a style="color:#252627" href="'+data.notice[x].url+'">'+data.notice[x].title+'</a></div></div></br>';
+         document.getElementById("notice_marquee").innerHTML+= '<div class=row><div class="col-sm-12" >'+'<a href="'+data.notice[x].url+'">'+data.notice[x].title+'</a></div></div></br>';
       }
     }else{
       alert('Sorry an errro occured while loading notice');
