@@ -20,12 +20,12 @@ from student.views import student_profile,student_group_profile,edit_student_pro
 from faculty.views import faculty_profile,faculty_group_profile,edit_faculty_profile,signup_faculty
 from alumni.views import alumni_profile,alumni_group_profile,edit_alumni_profile,signup_alumni,whatsapp1,whatsapp
 from forgot_password.views import forgot_password_view,verify_forgot_password
-from announcement.views import announcement
+from announcement.views import announcement, get_announcements
 from project.views import project
 from notice.views import get_notice,notice_read,home,administration,logout_view,activities,get_profile,contact_view
 from django.views.generic.base import RedirectView
 from achievement.views import achievements
-
+ 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -51,6 +51,7 @@ urlpatterns = [
     url(r'^announcement/$',announcement),
     url(r'^notice_get$',get_notice),
     url(r'^profile_get$',get_profile),
+    url(r'^get_announcements$',get_announcements),
     url(r'^notice_read$',notice_read),
     url(r'^$',home),
     url(r'^home/$',home),

@@ -85,3 +85,27 @@ def announcement(request):
 		return render(request,'activities.html',{'announcement_string':announcement_string,'link2':'<a href="/login/">LOGIN</a>'})
 	# except:
 	# 	return render(request,'activities.html' ,{'announcement_string':'No upcoming activities'})
+
+def get_announcements(request):
+	active = announcement_data.objects.filter(active = True).count()
+	if(active > 0):
+		temp_announcements = announcement_data.objects.filter(active = True)
+		announcements = []
+		temp_announcement = {}
+		for announcement in temp_announcements:
+			# temp_announcement['title'] = announcement.title
+			# temp_announcement['subtitle'] = announcement.subtitle
+			temp_announcement['title'] = str(announcement.title)
+			temp_announcement['subtitle'] = announcement.subtitle
+			announcements.append(temp_announcement)
+			temp_announcement = {}
+		data = {
+			'success' : True,
+			'announcements' : announcements
+		}
+	else:
+		data = {
+			'success' : False,
+			'message' : 'No active announcements yet'
+		}
+	return JsonResponse(data)
