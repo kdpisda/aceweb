@@ -26,11 +26,11 @@ $.ajax({
          document.getElementById("notice_marquee").innerHTML+= '<div class=row><div class="col-sm-12" >'+'<a href="'+data.notice[x].url+'">'+data.notice[x].title+'</a></div></div></br>';
       }
     }else{
-      alert('Sorry an errro occured while loading notice');
+      document.getElementById("notice_marquee").innerHTML+= '<div class=row><div class="col-sm-12" >No Updates</div></div></br>';
     }
   },
   error: function(){
     alert('Sorry an error occured while loading notice');
-    console.log('AJAZ call not successfull');
+    console.log('AJAX call not successfull');
   }
 });
